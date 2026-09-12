@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SampleBin — Free Funk Samples</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0d;
+            color: #ffffff;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 70px;
+            background: #111114;
+            border-bottom: 1px solid #29292e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #a855f7;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .upload-btn {
+            background: #a855f7;
+            color: white !important;
+            padding: 10px 17px;
+            border-radius: 8px;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px;
+            background:
+                radial-gradient(circle at 50% 0%, #3b1760 0%, transparent 45%),
+                #0b0b0d;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 80px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #a855f7;
+        }
+
+        .hero p {
+            color: #a4a4aa;
+            font-size: 18px;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        /* SEARCH */
+        .search-box {
+            max-width: 650px;
+            margin: 35px auto 0;
+            display: flex;
+            background: #151519;
+            border: 1px solid #303037;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 17px;
+            font-size: 15px;
+        }
+
+        .search-box button {
+            background: #a855f7;
+            border: none;
+            color: white;
+            padding: 0 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .section-title h2 {
+            font-size: 25px;
+        }
+
+        .section-title a {
+            color: #a855f7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 65px;
+        }
+
+        .category {
+            background: #151519;
+            border: 1px solid #29292e;
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .category:hover {
+            border-color: #a855f7;
+            transform: translateY(-2px);
+        }
+
+        .category .icon {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .category p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* SAMPLES */
+        .samples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .sample {
+            background: #151519;
+            border: 1px solid #29292e;
+            border-radius: 12px;
+            padding: 18px;
+            transition: 0.2s;
+        }
+
+        .sample:hover {
+            border-color: #44444d;
+        }
+
+        .sample-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sample-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .free {
+            background: #202024;
+            color: #b968ff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+
+        .sample-info {
+            color: #888;
+            font-size: 12px;
+            margin: 9px 0 15px;
+        }
+
+        .wave {
+            height: 38px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 15px;
+        }
+
+        .wave span {
+            width: 4px;
+            background: #a855f7;
+            border-radius: 3px;
+        }
+
+        .wave span:nth-child(1) { height: 12px; }
+        .wave span:nth-child(2) { height: 25px; }
+        .wave span:nth-child(3) { height: 18px; }
+        .wave span:nth-child(4) { height: 34px; }
+        .wave span:nth-child(5) { height: 20px; }
+        .wave span:nth-child(6) { height: 30px; }
+        .wave span:nth-child(7) { height: 14px; }
+        .wave span:nth-child(8) { height: 26px; }
+        .wave span:nth-child(9) { height: 35px; }
+        .wave span:nth-child(10) { height: 17px; }
+        .wave span:nth-child(11) { height: 28px; }
+        .wave span:nth-child(12) { height: 12px; }
+
+        .sample-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .play {
+            flex: 1;
+            border: 1px solid #33333a;
+            background: #1d1d21;
+            color: white;
+            border-radius: 7px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .download {
+            flex: 1;
+            background: #a855f7;
+            border: none;
+            color: white;
+            border-radius: 7px;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .download:hover,
+        .search-box button:hover {
+            background: #9333ea;
+        }
+
+        /* CTA */
+        .cta {
+            margin-top: 80px;
+            padding: 50px 25px;
+            text-align: center;
+            background: #151519;
+            border: 1px solid #29292e;
+            border-radius: 16px;
+        }
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            color: #999;
+            margin-bottom: 25px;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: #a855f7;
+            color: white;
+            text-decoration: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid #29292e;
+            padding: 30px 7%;
+            color: #666;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            nav .links a:not(.upload-btn) {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 70px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">Sample<span>Bin</span></div>
+
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="samples.html">Samples</a>
+            <a href="categories.html">Categories</a>
+            <a href="upload.html" class="upload-btn">Upload Sample</a>
+        </div>
+    </nav>
+
+
+    <section class="hero">
+
+        <h1>Free Samples.<br><span>Make Better Funk.</span></h1>
+
+        <p>
+            Discover free funk drums, loops, vocals, melodies and one-shots
+            made for producers. Download, chop, flip and create.
+        </p>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search funk samples...">
+            <button onclick="searchSamples()">Search</button>
+        </div>
+
+    </section>
+
+
+    <main>
+
+        <div class="section-title">
+            <h2>Browse Categories</h2>
+            <a href="categories.html">View all →</a>
+        </div>
+
+        <div class="categories">
+
+            <div class="category">
+                <div class="icon">🥁</div>
+                <p>Drums</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🎹</div>
+                <p>Melodies</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🎤</div>
+                <p>Vocals</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🔊</div>
+                <p>One Shots</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🎵</div>
+                <p>Loops</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">⚡</div>
+                <p>Funk FX</p>
+            </div>
+
+        </div>
+
+
+        <div class="section-title">
+            <h2>Featured Samples</h2>
+            <a href="samples.html">Browse all →</a>
+        </div>
+
+
+        <div class="samples">
+
+            <div class="sample">
+                <div class="sample-top">
+                    <div class="sample-name">Brazilian Funk Drums</div>
+                    <div class="free">FREE</div>
+                </div>
+
+                <div class="sample-info">
+                    Drum Loop • 130 BPM • WAV
+                </div>
+
+                <div class="wave">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+
+                <div class="sample-buttons">
+                    <button class="play" onclick="playSample(this)">▶ Play</button>
+                    <button class="download" onclick="downloadSample()">↓ Download</button>
+                </div>
+            </div>
+
+
+            <div class="sample">
+                <div class="sample-top">
+                    <div class="sample-name">Dark Funk Bass</div>
+                    <div class="free">FREE</div>
+                </div>
+
+                <div class="sample-info">
+                    Bass Loop • 128 BPM • WAV
+                </div>
+
+                <div class="wave">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+
+                <div class="sample-buttons">
+                    <button class="play" onclick="playSample(this)">▶ Play</button>
+                    <button class="download" onclick="downloadSample()">↓ Download</button>
+                </div>
+            </div>
+
+
+            <div class="sample">
+                <div class="sample-top">
+                    <div class="sample-name">Funk Vocal Chop</div>
+                    <div class="free">FREE</div>
+                </div>
+
+                <div class="sample-info">
+                    Vocal • 140 BPM • WAV
+                </div>
+
+                <div class="wave">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+
+                <div class="sample-buttons">
+                    <button class="play" onclick="playSample(this)">▶ Play</button>
+                    <button class="download" onclick="downloadSample()">↓ Download</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="cta">
+            <h2>Have a sample to share?</h2>
+
+            <p>
+                Upload your own funk samples and let other producers use them.
+            </p>
+
+            <a href="upload.html">Upload a Sample</a>
+        </div>
+
+    </main>
+
+
+    <footer>
+        <div>© 2026 SampleBin</div>
+        <div>Free samples for producers.</div>
+    </footer>
+
+
+    <script>
+
+        function searchSamples() {
+            const search = document.querySelector(".search-box input").value;
+
+            if (search.trim() === "") {
+                alert("Type something to search!");
+                return;
+            }
+
+            alert("Searching SampleBin for: " + search);
+        }
+
+        function playSample(button) {
+            if (button.innerText.includes("▶")) {
+                button.innerText = "⏸ Pause";
+            } else {
+                button.innerText = "▶ Play";
+            }
+        }
+
+        function downloadSample() {
+            alert("Sample download will be connected once you add your sample files.");
+        }
+
+    </script>
+
+</body>
+</html>
